@@ -1,0 +1,3 @@
+//
+print and echo are only used to display primitive data type
+while print_r is used to display collective(reference data types)
