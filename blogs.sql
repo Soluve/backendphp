@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `users_id` int NOT NULL primary key AUTO_INCREMENT,
     `username` varchar(100),
     `email` varchar(100),
-    `password` varchar(50),
+    `password` varchar(255),
     `reg_at` timestamp default current_timestamp
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `authors` (
     `author_id` int NOT NULL primary key AUTO_INCREMENT,
     `author_name` varchar(100),
     `email` varchar(100),
-    `password` varchar(50),
+    `password` varchar(255),
     `blogs_id` varchar(200),
     `reg_at` timestamp default current_timestamp
 );
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
     `admin_id` int NOT NULL primary key AUTO_INCREMENT,
     `username` varchar(100),
     `email` varchar(100),
-    `password` varchar(50)
+    `password` varchar(255)
 );
 
 CREATE TABLE IF NOT EXISTS `category` (

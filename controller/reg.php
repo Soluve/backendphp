@@ -14,19 +14,26 @@ function registerUser($username, $email, $password, $confirm_pwd){
     // if ($password !== $confirm_pwd) {
     //     return "Passwords do not match.";
     // }
-    // $sql = "INSERT INTO users(username, email, password) VALUES($username , $email, $password)";
-    
-    // if ($_conn->query($sql) === TRUE) {
-    //     echo "New record created successfully";
-    //   } else {
-    //     echo "Error: " . $sql . "<br>" . $_conn->error;
-    //   }
-      
-    //   $_conn->close();
+    try{
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = $_conn->prepare("INSERT INTO users(username, email, password) VALUES(?, ?, ?)");
+        $sql->bind_param("sss", $username, $email, $hashed_password);
+        
+        // Execute the statement
+        if ($sql->execute()) {
+            echo "User registered successfully!";
+        } else {
+            echo "Error: " . $sql->error;
+        }
+
+        // Close the statement and connection
+        $sql->close();
+        $_conn->close();
+    } catch (mysqli_sql_exception $e) {
+        echo "SQL Error: " . $e->getMessage();
+    }
     return json_encode([
         "username"=>$username,
         "email"=>$email,
-        "password"=>$password,
-        "confirmpwd"=>$confirm_pwd
     ]);
 }

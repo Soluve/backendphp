@@ -32,8 +32,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     require "controller/reg.php";
 
     $feedback = registerUser($username, $email, $password, $confirm_pwd);
-    $profile = ($feedback);
-    echo ($profile);
+    // $profile = ($feedback);
+    echo ($feedback);
     
     // $user = $profile->username;
     // echo($user);
